@@ -21,19 +21,16 @@ public final class Constants {
     // drive Constants
     public static final class drive {
 
-        // f: front
-        // t: top
-        // r: rear
+        // F: front
+        // B: back
 
         // left
-        public static final int lf = 3;
-        public static final int lt = 4;
-        public static final int lr = 9;
+        public static final int LF = 0;
+        public static final int LB = 0;
 
         // right
-        public static final int rf = 7;
-        public static final int rt = 5;
-        public static final int rr = 8;
+        public static final int RF = 0;
+        public static final int RB = 0;
         
         public static double rotationSpeedRatio= 0.6;
         public static final double driveSpeedRatio= 1;
