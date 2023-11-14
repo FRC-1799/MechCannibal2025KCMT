@@ -35,50 +35,19 @@ public final class Constants {
         public static double rotationSpeedRatio= 0.6;
         public static final double driveSpeedRatio= 1;
 
-        public static double rampspeed= .25;
+        // public static double rampspeed= .25;
     }
 
     // Changing Solenoid Values idk 50/50 this'll work
-    public static final class bucket {
-        public static final class solenoid {
-            public static final int fwdPort = 6;
-            public static final int revPort = 7;
 
-        }
-    }
-
-    public static final class intake{
-        public static final class solenoid {
-            public static final int fwdPort = 4;
-            public static final int revPort = 5;
-
-        }
-        public static final int motor1 = 6;
-        public static final int motor2 = 11;
-        
-        //reversed
-        public static final double fwdSpeed = 1;
-        public static final double revSpeed = -.2;
-    }
 
     public static final class auto{
         public static final double fwdSpeed = -0.6;
         public static final double revSpeed = 0.4;
 
-        public static final class balancePID{
-            public static final double kP = 0.06;
-            public static final double kI = 0;
-            public static final double kD = 0.05;
-            public static final double outputMax = 1;
-            public static final double outputMin = -1;
-
-            public static final double positionTolerance = 2;
-            public static final double velocityTolerance = 2;
-        }
     }
 
     public static final int MOVEMENT_JOYSTICK = 0;
     public static final int MANIPULATOR_JOYSTICK = 1;
-    public static double driveSpeedRatio;
 
 }
