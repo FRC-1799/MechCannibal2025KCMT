@@ -9,13 +9,13 @@ public class DriveBase extends SubsystemBase {
  // new CANSparkMax(Constats.drive.lt, MotorType.kBrushless);
 
 // left side
-public final WPI_VictorSPX LF = new WPI_VictorSPX(Constants.drive.LF);
-public final WPI_VictorSPX LB = new WPI_VictorSPX(Constants.drive.LB);
+public final WPI_VictorSPX LeftFront = new WPI_VictorSPX(Constants.drive.LF);
+public final WPI_VictorSPX LeftBack = new WPI_VictorSPX(Constants.drive.LB);
 
 
 //right side
-public final WPI_VictorSPX RF = new WPI_VictorSPX(Constants.drive.RF);
-public final WPI_VictorSPX RB = new WPI_VictorSPX(Constants.drive.RB);
+public final WPI_VictorSPX RightFront = new WPI_VictorSPX(Constants.drive.RF);
+public final WPI_VictorSPX RightBack = new WPI_VictorSPX(Constants.drive.RB);
 
 
 
@@ -26,7 +26,7 @@ public final WPI_VictorSPX RB = new WPI_VictorSPX(Constants.drive.RB);
 
     //leftMotors.setInverted(true);
     //m_RobotDrive = new DifferentialDrive(rightMotors, leftMotors)
-    m_RobotDrive = new MecanumDrive(LF, LB, RF, RB);
+    m_RobotDrive = new MecanumDrive(LeftFront, LeftBack, RightFront, RightBack);
 
     addChild("Drive", m_RobotDrive);
     
