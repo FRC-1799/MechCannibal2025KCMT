@@ -25,12 +25,12 @@ public final class Constants {
         // B: back
 
         // left
-        public static final int LF = 0;
-        public static final int LB = 0;
+        public static final int LF = 2;
+        public static final int LB = 4;
 
         // right
-        public static final int RF = 0;
-        public static final int RB = 0;
+        public static final int RF = 3;
+        public static final int RB = 5;
         
         public static double rotationSpeedRatio= 0.6;
         public static final double driveSpeedRatio= 1;
