@@ -21,11 +21,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
 
-  final Pneumatics pneumatics = new Pneumatics();
   final DriveBase m_driveSubsystem = new DriveBase();
 
-  final ToggleCompressor toggleCompressor = new ToggleCompressor(pneumatics);
-  final Gyro gyro = new Gyro();
 
 
   final AutoSelector selector = new AutoSelector(m_driveSubsystem);
@@ -54,23 +51,18 @@ public class RobotContainer {
 
 
 
-    gyro.log();
 
   }
 
   private void configureButtonBindings() {
-
-
-    manipulatorJoystick.y()
-    .onTrue(toggleCompressor);
   }
-
   // Auto Stuff
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
+
   public Command getAutonomousCommand() {
     //return the selector's selected command
     return selector.getSelected();
