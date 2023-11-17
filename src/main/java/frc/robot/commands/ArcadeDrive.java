@@ -26,14 +26,16 @@ public class ArcadeDrive extends RunCommand {
    * @param right      The control input for the right sight of the drive
    * @param driveSubsystem The driveSubsystem subsystem to drive
    */
-  public ArcadeDrive(DriveBase drive, DoubleSupplier speed, DoubleSupplier rotation) {
+  public ArcadeDrive(DriveBase drive, DoubleSupplier xSpeed, DoubleSupplier ySpeed, DoubleSupplier rotation) {
     super(
       ()->{
         SmartDashboard.putString("On", "true");
 
         drive.drive(
-          MathUtil.applyDeadband(speed.getAsDouble(), 0.1)*Constants.drive.driveSpeedRatio,
+          MathUtil.applyDeadband(xSpeed.getAsDouble(), 0.1)*Constants.drive.driveSpeedRatio,
+          MathUtil.applyDeadband(ySpeed.getAsDouble(), 0.1)*Constants.drive.driveSpeedRatio,
           MathUtil.applyDeadband(rotation.getAsDouble(), 0.1)*Constants.drive.rotationSpeedRatio
+          
         );
       },
       drive

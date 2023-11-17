@@ -15,11 +15,13 @@ public class DriveStraight extends WaitCommand {
   private final DriveBase driveSubsystem;
 
   double speed = 0;
+  boolean isXAxis = true;
 
-  public DriveStraight(DriveBase driveSubsystem, double time, double speed) {
+  public DriveStraight(DriveBase driveSubsystem, double time, double speed, boolean isXAxis) {
     super(time);
     this.driveSubsystem = driveSubsystem;
     this.speed = MathUtil.clamp(speed, -1, 1);
+    this.isXAxis = isXAxis;
     addRequirements(this.driveSubsystem);
 
   }
@@ -28,12 +30,18 @@ public class DriveStraight extends WaitCommand {
   @Override
   public void execute() {
       super.execute();
-      driveSubsystem.drive(- speed, 0);
+      if (this.isXAxis){
+        driveSubsystem.drive(- speed, 0, 0);
+      }
+      else{
+        driveSubsystem.drive(0, - speed, 0);
+
+      }
   }
 
   @Override
   public void end(boolean interupted){
     super.end(interupted);
-    driveSubsystem.drive(0,0);
+    driveSubsystem.drive(0,0,0);
   }
 }
