@@ -28,6 +28,12 @@ public final class Constants {
         public static final int LF = 2;
         public static final int LB = 4;
 
+         // Arm motors identification 
+        public static final int ArmMotorOne = 0;
+        public static final int ArmMotorTwo = 1;
+
+       
+
         // right
         public static final int RF = 3;
         public static final int RB = 5;
