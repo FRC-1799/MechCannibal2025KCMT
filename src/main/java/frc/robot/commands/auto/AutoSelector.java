@@ -6,8 +6,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 import frc.robot.subsystems.DriveBase;
-import frc.robot.subsystems.Gyro;
-// import frc.robot.commands.auto.AutoRoutines.*;
+
 public class AutoSelector {
 
   SendableChooser<Command> m_chooser = new SendableChooser<Command>();
