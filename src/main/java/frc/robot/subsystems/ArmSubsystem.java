@@ -15,7 +15,6 @@ public class ArmSubsystem extends SubsystemBase {
   public final DigitalInput topSwitch = new DigitalInput(Constants.arm.topSwitch);
   public final DigitalInput bottomSwitch = new DigitalInput(Constants.arm.bottomSwitch);
   public boolean isUp = false;
-  public boolean isMoving = false;
   final MotorControllerGroup armMotors = new MotorControllerGroup(armOne, armTwo);
 
   public void move() {
