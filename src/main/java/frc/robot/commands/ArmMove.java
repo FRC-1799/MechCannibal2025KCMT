@@ -20,18 +20,12 @@ public class ArmMove extends RunCommand {
    * @param driveSubsystem The driveSubsystem subsystem to drive
    */
   public ArmMove(final ArmSubsystem arm, final double output) {
-    if (output == 0){
-        
-    }
-    else{
-        final boolean isUp=0<output;
+
+    if (output != 0){
+        boolean isUp=0<output;
         super(
         ()->{
-            SmartDashboard.putString("Arm is on", "true");
-
-            arm.move(
-                isUp
-            );
+            arm.move(isUp);
         },
         arm
         );
