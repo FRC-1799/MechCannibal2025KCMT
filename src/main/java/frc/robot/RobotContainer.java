@@ -24,6 +24,8 @@ public class RobotContainer {
   final DriveBase m_driveSubsystem = new DriveBase();
 
 
+  final ArmSubsystem arm = new ArmSubsystem(); 
+
 
   final AutoSelector selector = new AutoSelector(m_driveSubsystem);
 
@@ -49,6 +51,12 @@ public class RobotContainer {
             () -> ((-movementJoystick.getLeftTriggerAxis() + movementJoystick.getRightTriggerAxis()))
       ));
 
+    arm.setDefaultCommand(
+      new ArmMove(
+            arm,
+            () -> ((-movementJoystick.getLeftBumperAxis() + movementJoystick.getRightBumperAxis()))
+      ));
+
 
 
 
@@ -68,3 +76,4 @@ public class RobotContainer {
     return selector.getSelected();
   }
 }
+
