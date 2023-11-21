@@ -7,16 +7,16 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 
 public class DriveBase extends SubsystemBase {
- // new CANSparkMax(Constats.drive.lt, MotorType.kBrushless);
+  // new CANSparkMax(Constats.drive.lt, MotorType.kBrushless);
 
-// left side
-public final WPI_VictorSPX LeftFront = new WPI_VictorSPX(Constants.drive.LF);
-public final WPI_VictorSPX LeftBack = new WPI_VictorSPX(Constants.drive.LB);
+  // left side
+  public final WPI_VictorSPX LeftFront = new WPI_VictorSPX(Constants.drive.LF);
+  public final WPI_VictorSPX LeftBack = new WPI_VictorSPX(Constants.drive.LB);
 
 
-//right side
-public final WPI_VictorSPX RightFront = new WPI_VictorSPX(Constants.drive.RF);
-public final WPI_VictorSPX RightBack = new WPI_VictorSPX(Constants.drive.RB);
+  //right side
+  public final WPI_VictorSPX RightFront = new WPI_VictorSPX(Constants.drive.RF);
+  public final WPI_VictorSPX RightBack = new WPI_VictorSPX(Constants.drive.RB);
 
 
 

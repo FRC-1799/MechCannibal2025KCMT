@@ -22,8 +22,6 @@ public class RobotContainer {
 
 
   final DriveBase m_driveSubsystem = new DriveBase();
-
-
   final ArmSubsystem arm = new ArmSubsystem(); 
 
 
@@ -46,15 +44,16 @@ public class RobotContainer {
       new ArcadeDrive(
             m_driveSubsystem,
             
-            () -> (-movementJoystick.getLeftX() ),
-            () -> (movementJoystick.getLeftY()),
-            () -> ((-movementJoystick.getLeftTriggerAxis() + movementJoystick.getRightTriggerAxis()))
+            () -> (-movementJoystick.getLeftX()),
+            () -> (-movementJoystick.getRightX()),
+            () -> (movementJoystick.getLeftY())
+            
       ));
 
     arm.setDefaultCommand(
       new ArmMove(
-            arm,
-            () -> ((-movementJoystick.getLeftBumperAxis() + movementJoystick.getRightBumperAxis()))
+          arm,
+          () -> (-movementJoystick.getLeftTriggerAxis() + movementJoystick.getRightTriggerAxis())
       ));
 
 
