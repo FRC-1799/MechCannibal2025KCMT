@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -15,11 +16,10 @@ public class ArmSubsystem extends SubsystemBase {
   public final DigitalInput bottomSwitch = new DigitalInput(Constants.arm.bottomSwitch);
   public boolean isUp = false;
   public boolean isMoving = false;
-
   final MotorControllerGroup armMotors = new MotorControllerGroup(armOne, armTwo);
 
   public void move() {
-
+    SmartDashboard.putBoolean("isUp", isUp);
     if (topSwitch.get() || bottomSwitch.get()){
         armMotors.set(0);
     }
