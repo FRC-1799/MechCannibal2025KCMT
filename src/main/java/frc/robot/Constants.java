@@ -38,6 +38,15 @@ public final class Constants {
         public static double rampspeed= .25;
     }
 
+    public static final class arm {
+
+        public static final int ArmOnePort = 0;
+        public static final int ArmTwoPort = 1;
+
+        public static final double ArmUp = 0.5;
+        public static final double ArmDown = -0.1;
+    }
+
     // Changing Solenoid Values idk 50/50 this'll work
     public static final class bucket {
         public static final class solenoid {

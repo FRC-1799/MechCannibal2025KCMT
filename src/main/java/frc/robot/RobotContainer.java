@@ -24,6 +24,8 @@ public class RobotContainer {
   final Pneumatics pneumatics = new Pneumatics();
   final DriveBase m_driveSubsystem = new DriveBase();
 
+  final ArmSubsystem arm = new ArmSubsystem(); 
+
   final ToggleCompressor toggleCompressor = new ToggleCompressor(pneumatics);
   final Gyro gyro = new Gyro();
 
@@ -52,6 +54,12 @@ public class RobotContainer {
             () -> ((-movementJoystick.getLeftTriggerAxis() + movementJoystick.getRightTriggerAxis()))
       ));
 
+    arm.setDefaultCommand(
+      new ArmMove(
+            arm,
+            () -> ((-movementJoystick.getLeftBumperAxis() + movementJoystick.getRightBumperAxis()))
+      ));
+
 
 
     gyro.log();
@@ -76,3 +84,4 @@ public class RobotContainer {
     return selector.getSelected();
   }
 }
+
