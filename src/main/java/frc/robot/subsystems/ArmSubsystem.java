@@ -17,23 +17,55 @@ public class ArmSubsystem extends SubsystemBase {
   public boolean isUp = false;
   final MotorControllerGroup armMotors = new MotorControllerGroup(armOne, armTwo);
 
+
   public void move() {
-    SmartDashboard.putBoolean("isUp", isUp);
-    if (topSwitch.get() || bottomSwitch.get()){
-        armMotors.set(0);
-    }
-    else if (isUp){
-        armMotors.set(Constants.arm.ArmDown);
-        isUp=false;
+      SmartDashboard.putBoolean("isup", isUp);
+      if (!topSwitch.get()) {
+          isUp=true;
+          // We are going up and top limit is tripped so stop
+          armMotors.set(0);
+      } 
+      else {
+          // We are going up but top limit is not tripped so go at commanded speed
+          armMotors.set(Constants.arm.ArmUp) ;
 
-    }
-    else{
-      armMotors.set(Constants.arm.ArmUp);
-      isUp=true;
+        }
+      
+      if (!bottomSwitch.get() && isUp==true) {
+          // We are going down and bottom limit is tripped so stop
+          armMotors.set(0);
+          isUp=false;
+      } else {
+          // We are going down but bottom limit is not tripped so go at commanded speed
+          armMotors.set(Constants.arm.ArmDown);
+      }
+  }
+  // public void move2(DigitalInput endSwitch, MotorControllerGroup motor){
+  //   while (endSwitch.get()){
+  //     motor.set(constants.arm.)
+  //   }
+  // }
+    // SmartDashboard.putBoolean("isUp", isUp);
+    // while ( topSwitch.get() || bottomSwitch.get()){
+    //   if (isUp){
+    //       armMotors.set(Constants.arm.ArmDown);
+          
+    //   }
+    //   else{
+    //     armMotors.set(Constants.arm.ArmUp);
+        
 
-    }
+    //   }                                                       
+    // }
+    // armMotors.set(0);
+    // if (isUp){
+    //   isUp=false;
+    // }
+    // else{
+    //   isUp=true;
+    // }
 
   }
+ 
 
 
-}

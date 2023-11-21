@@ -23,7 +23,7 @@ public class ToggleArm extends RunCommand {
       super(
         ()->{
           
-            arm.move()
+            arm.move();
         },
         arm
         );

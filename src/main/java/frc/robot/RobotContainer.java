@@ -43,10 +43,9 @@ public class RobotContainer {
     m_driveSubsystem.setDefaultCommand(
       new ArcadeDrive(
             m_driveSubsystem,
-            
-            () -> (-movementJoystick.getLeftX()),
-            () -> (-movementJoystick.getRightX()),
-            () -> (movementJoystick.getLeftY())
+            () -> (-movementJoystick.getLeftY()),
+            () -> (movementJoystick.getLeftX()),
+            () -> (-movementJoystick.getRightX())
             
       ));
 
