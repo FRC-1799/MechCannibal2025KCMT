@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import frc.robot.Constants;
@@ -10,21 +11,30 @@ public class ArmSubsystem extends SubsystemBase {
 
   public final WPI_VictorSPX armOne = new WPI_VictorSPX(Constants.arm.ArmOnePort);
   public final WPI_VictorSPX armTwo = new WPI_VictorSPX(Constants.arm.ArmTwoPort);
+  public final DigitalInput topSwitch = new DigitalInput(Constants.arm.topSwitch);
+  public final DigitalInput bottomSwitch = new DigitalInput(Constants.arm.bottomSwitch);
+  public boolean isUp = false;
+  public boolean isMoving = false;
 
   final MotorControllerGroup armMotors = new MotorControllerGroup(armOne, armTwo);
 
-  public void move(final double output) {
+  public void move() {
 
-    if (output>0){
-        armMotors.set(Constants.arm.ArmUp);
+    if (topSwitch.get() || bottomSwitch.get()){
+        armMotors.set(0);
     }
-    else if (output < 0){
+    else if (isUp){
         armMotors.set(Constants.arm.ArmDown);
+        isUp=false;
+
     }
     else{
-      armMotors.set(0);
+      armMotors.set(Constants.arm.ArmUp);
+      isUp=true;
+
     }
 
   }
+
 
 }

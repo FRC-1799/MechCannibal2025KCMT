@@ -45,6 +45,10 @@ public final class Constants {
 
         public static final double ArmUp = 0.2;
         public static final double ArmDown = -0.2;
+
+        public static final int topSwitch = 0;
+        public static final int bottomSwitch = 0;
+        
     }
 
     // Changing Solenoid Values idk 50/50 this'll work

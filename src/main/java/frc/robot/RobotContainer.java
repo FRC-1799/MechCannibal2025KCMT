@@ -30,7 +30,7 @@ public class RobotContainer {
   final CommandXboxController movementJoystick = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
   final CommandXboxController manipulatorJoystick = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);
 
-
+  final ToggleArm toggleIntake = new ToggleArm(arm);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -50,11 +50,7 @@ public class RobotContainer {
             
       ));
 
-    arm.setDefaultCommand(
-      new ArmMove(
-          arm,
-          () -> (-movementJoystick.getLeftTriggerAxis() + movementJoystick.getRightTriggerAxis())
-      ));
+
 
 
 
@@ -62,6 +58,7 @@ public class RobotContainer {
   }
 
   private void configureButtonBindings() {
+    movementJoystick.a().onTrue(toggleIntake);
   }
   // Auto Stuff
   /**

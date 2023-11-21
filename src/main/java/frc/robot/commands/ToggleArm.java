@@ -11,7 +11,7 @@ import frc.robot.subsystems.ArmSubsystem;
 /**
  * Have the robot drive tank style.
  */
-public class ArmMove extends RunCommand {
+public class ToggleArm extends RunCommand {
   /**
    * Creates a new ArcadeDrive command.
    *
@@ -19,11 +19,11 @@ public class ArmMove extends RunCommand {
    * @param right      The control input for the right sight of the drive
    * @param driveSubsystem The driveSubsystem subsystem to drive
    */
-  public ArmMove(final ArmSubsystem arm, final DoubleSupplier output) {
+  public ToggleArm(final ArmSubsystem arm) {
       super(
         ()->{
           
-            arm.move(MathUtil.applyDeadband(output.getAsDouble(), 0.1));
+            arm.move();
         },
         arm
         );
