@@ -4,6 +4,7 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.ArmSubsystem;
@@ -11,7 +12,7 @@ import frc.robot.subsystems.ArmSubsystem;
 /**
  * Have the robot drive tank style.
  */
-public class ToggleArm extends RunCommand {
+public class setActive extends InstantCommand {
   /**
    * Creates a new ArcadeDrive command.
    *
@@ -19,7 +20,7 @@ public class ToggleArm extends RunCommand {
    * @param right      The control input for the right sight of the drive
    * @param driveSubsystem The driveSubsystem subsystem to drive
    */
-  public ToggleArm(final ArmSubsystem arm) {
+  public setActive(final ArmSubsystem arm) {
     
       // super(
       //   ()->{
@@ -31,10 +32,9 @@ public class ToggleArm extends RunCommand {
       super(
         ()->{
           
-            arm.move();
+            arm.setActive();
         },
         arm
         );
-        
     }
   }

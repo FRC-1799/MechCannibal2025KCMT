@@ -15,31 +15,49 @@ public class ArmSubsystem extends SubsystemBase {
   public final DigitalInput topSwitch = new DigitalInput(Constants.arm.topSwitch);
   public final DigitalInput bottomSwitch = new DigitalInput(Constants.arm.bottomSwitch);
   public boolean isUp = false;
+  public boolean isActive =false;
   final MotorControllerGroup armMotors = new MotorControllerGroup(armOne, armTwo);
 
 
   public void move() {
       SmartDashboard.putBoolean("isup", isUp);
-      if (!topSwitch.get()) {
-          isUp=true;
-          // We are going up and top limit is tripped so stop
-          armMotors.set(0);
-      } 
-      else {
-          // We are going up but top limit is not tripped so go at commanded speed
-          armMotors.set(Constants.arm.ArmUp) ;
+      SmartDashboard.putBoolean("topSwitch", topSwitch.get());
+      SmartDashboard.putBoolean("bottomSwitch", bottomSwitch.get());
+      SmartDashboard.putBoolean("bottomSwitch", isActive);
 
+      if (isActive){
+        if (!topSwitch.get()) {
+            isUp=true;
+            
+            // We are going up and top limit is tripped so stop
+            armMotors.set(0);
+        } 
+        if(!isUp) {
+          // We are going up but top limit is not tripped so go at commanded speed
+          
+          armMotors.set(Constants.arm.ArmUp);
         }
+      }
+    
+
+        
       
-      if (!bottomSwitch.get() && isUp==true) {
+      if (!bottomSwitch.get() && isUp) {
           // We are going down and bottom limit is tripped so stop
           armMotors.set(0);
           isUp=false;
-      } else {
-          // We are going down but bottom limit is not tripped so go at commanded speed
-          armMotors.set(Constants.arm.ArmDown);
+          isActive=false;
       }
+      else if(isUp){
+        armMotors.set(Constants.arm.ArmDown);
+    }
+
   }
+  public void setActive(){
+    isActive=true;
+  }
+
+}
   // public void move2(DigitalInput endSwitch, MotorControllerGroup motor){
   //   while (endSwitch.get()){
   //     motor.set(constants.arm.)
@@ -65,7 +83,7 @@ public class ArmSubsystem extends SubsystemBase {
     //   isUp=true;
     // }
 
-  }
+
  
 
 

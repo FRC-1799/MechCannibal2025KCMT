@@ -31,11 +31,13 @@ public class RobotContainer {
   final CommandXboxController manipulatorJoystick = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);
 
   final ToggleArm toggleIntake = new ToggleArm(arm);
+  final setActive setActive = new setActive(arm);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
     
+
     //start cameraServer
     CameraServer.startAutomaticCapture();
     CameraServer.startAutomaticCapture();
@@ -58,6 +60,8 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     movementJoystick.a().onTrue(toggleIntake);
+    movementJoystick.b().onTrue(setActive);
+    
   }
   // Auto Stuff
   /**
