@@ -18,7 +18,7 @@ public class DriveBase extends SubsystemBase {
   public final WPI_VictorSPX RightFront = new WPI_VictorSPX(Constants.drive.RF);
   public final WPI_VictorSPX RightBack = new WPI_VictorSPX(Constants.drive.RB);
 
-
+  
 
   final MecanumDrive m_RobotDrive;
 
@@ -27,7 +27,11 @@ public class DriveBase extends SubsystemBase {
 
     //leftMotors.setInverted(true);
     //m_RobotDrive = new DifferentialDrive(rightMotors, leftMotors)
+    LeftFront.setInverted(true);
+    LeftBack.setInverted(true);
+    
     m_RobotDrive = new MecanumDrive(LeftFront, LeftBack, RightFront, RightBack);
+
 
     addChild("Drive", m_RobotDrive);
     
