@@ -12,9 +12,9 @@ import frc.robot.subsystems.ArmSubsystem;
 /**
  * Have the robot drive tank style.
  */
-public class ToggleArm extends InstantCommand {
+public class ToggleArm extends RunCommand {
   // setActive setActive;
-  // ArmSubsystem arm;
+  ArmSubsystem arm;
   /**
    * Creates a new ArcadeDrive command.
    *
@@ -23,7 +23,7 @@ public class ToggleArm extends InstantCommand {
    * @param driveSubsystem The driveSubsystem subsystem to drive
    */
   public ToggleArm(final ArmSubsystem Arm) {
-    
+      
       // super(
       //   ()->{
           
@@ -38,7 +38,7 @@ public class ToggleArm extends InstantCommand {
         },
         Arm
         );
-       //arm=Arm; 
+       arm=Arm; 
     }
     // @Override 
     // public void initialize(){
@@ -46,4 +46,8 @@ public class ToggleArm extends InstantCommand {
     //   arm.isActive=true;
     //   setActive.schedule();
     // }
+    @Override
+    public void initialize(){
+      arm.isActive=true;
+    }
   }

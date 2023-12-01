@@ -20,13 +20,9 @@ public class ArmSubsystem extends SubsystemBase {
 
 
   public void move() {
+    printInfo();
+      if(isActive)
 
-      isActive = true;
-      while (isActive) {
-        SmartDashboard.putBoolean("isup", isUp);
-        SmartDashboard.putBoolean("topSwitch", topSwitch.get());
-        SmartDashboard.putBoolean("botttomSwitch", bottomSwitch.get());
-        SmartDashboard.putBoolean("isActive", isActive);
         if (!topSwitch.get()) {
             isUp = true;
             
@@ -41,10 +37,7 @@ public class ArmSubsystem extends SubsystemBase {
 
         if (!bottomSwitch.get() && isUp) {
           // We are going down and bottom limit is tripped so stop
-          SmartDashboard.putBoolean("isup", isUp);
-          SmartDashboard.putBoolean("topSwitch", topSwitch.get());
-          SmartDashboard.putBoolean("botttomSwitch", bottomSwitch.get());
-          SmartDashboard.putBoolean("isActive", isActive);
+         
           armMotors.set(0);
           isUp = false;
           isActive = false;
@@ -53,17 +46,16 @@ public class ArmSubsystem extends SubsystemBase {
       else if(isUp){
         armMotors.set(Constants.arm.ArmDown);
     }
-      }
-    
-
-        
-      
-
-
   }
   // public void setActive() {
   //   isActive = true;
   // }
+  private void printInfo(){
+    SmartDashboard.putBoolean("isup", isUp);
+    SmartDashboard.putBoolean("topSwitch", topSwitch.get());
+    SmartDashboard.putBoolean("botttomSwitch", bottomSwitch.get());
+    SmartDashboard.putBoolean("isActive", isActive);
+  }
 
 }
   // public void move2(DigitalInput endSwitch, MotorControllerGroup motor){
