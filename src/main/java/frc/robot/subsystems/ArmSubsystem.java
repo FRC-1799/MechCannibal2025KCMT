@@ -15,19 +15,20 @@ public class ArmSubsystem extends SubsystemBase {
   public final DigitalInput topSwitch = new DigitalInput(Constants.arm.topSwitch);
   public final DigitalInput bottomSwitch = new DigitalInput(Constants.arm.bottomSwitch);
   public boolean isUp = false;
-  public boolean isActive =false;
+  public boolean isActive = false;
   final MotorControllerGroup armMotors = new MotorControllerGroup(armOne, armTwo);
 
 
   public void move() {
-      SmartDashboard.putBoolean("isup", isUp);
-      SmartDashboard.putBoolean("topSwitch", topSwitch.get());
-      SmartDashboard.putBoolean("bottomSwitch", bottomSwitch.get());
-      SmartDashboard.putBoolean("bottomSwitch", isActive);
 
-      if (isActive){
+      isActive = true;
+      while (isActive) {
+        SmartDashboard.putBoolean("isup", isUp);
+        SmartDashboard.putBoolean("topSwitch", topSwitch.get());
+        SmartDashboard.putBoolean("botttomSwitch", bottomSwitch.get());
+        SmartDashboard.putBoolean("isActive", isActive);
         if (!topSwitch.get()) {
-            isUp=true;
+            isUp = true;
             
             // We are going up and top limit is tripped so stop
             armMotors.set(0);
@@ -37,25 +38,32 @@ public class ArmSubsystem extends SubsystemBase {
           
           armMotors.set(Constants.arm.ArmUp);
         }
+
+        if (!bottomSwitch.get() && isUp) {
+          // We are going down and bottom limit is tripped so stop
+          SmartDashboard.putBoolean("isup", isUp);
+          SmartDashboard.putBoolean("topSwitch", topSwitch.get());
+          SmartDashboard.putBoolean("botttomSwitch", bottomSwitch.get());
+          SmartDashboard.putBoolean("isActive", isActive);
+          armMotors.set(0);
+          isUp = false;
+          isActive = false;
+          return;
+      }
+      else if(isUp){
+        armMotors.set(Constants.arm.ArmDown);
+    }
       }
     
 
         
       
-      if (!bottomSwitch.get() && isUp) {
-          // We are going down and bottom limit is tripped so stop
-          armMotors.set(0);
-          isUp=false;
-          isActive=false;
-      }
-      else if(isUp){
-        armMotors.set(Constants.arm.ArmDown);
-    }
+
 
   }
-  public void setActive(){
-    isActive=true;
-  }
+  // public void setActive() {
+  //   isActive = true;
+  // }
 
 }
   // public void move2(DigitalInput endSwitch, MotorControllerGroup motor){

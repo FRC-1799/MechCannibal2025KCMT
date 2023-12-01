@@ -11,11 +11,11 @@ public class AutoSelector {
 
   SendableChooser<Command> m_chooser = new SendableChooser<Command>();
 
-  public AutoSelector(DriveBase Drive){
+  public AutoSelector(DriveBase Drive) {
     SmartDashboard.putData("autos: ", m_chooser);
   }
 
-  public Command getSelected(){
+  public Command getSelected() {
     return m_chooser.getSelected();
   }
 
