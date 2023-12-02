@@ -31,12 +31,14 @@ public class RobotContainer {
   final CommandXboxController movementJoystick = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
   final CommandXboxController manipulatorJoystick = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);
 
-
+  final ToggleArm toggleIntake = new ToggleArm(arm);
+  //final setActive setActive = new setActive(arm);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
     
+
     //start cameraServer
     CameraServer.startAutomaticCapture();
     CameraServer.startAutomaticCapture();
@@ -44,18 +46,13 @@ public class RobotContainer {
     m_driveSubsystem.setDefaultCommand(
       new ArcadeDrive(
             m_driveSubsystem,
-            
-            () -> (-movementJoystick.getLeftX()),
-            () -> (-movementJoystick.getRightX()),
-            () -> (movementJoystick.getLeftY())
+            () -> (-movementJoystick.getLeftY()),
+            () -> (movementJoystick.getLeftX()),
+            () -> (-movementJoystick.getRightX())
             
       ));
 
-    arm.setDefaultCommand(
-      new ArmMove(
-          arm,
-          () -> (-movementJoystick.getLeftTriggerAxis() + movementJoystick.getRightTriggerAxis())
-      ));
+
 
 
 
@@ -63,6 +60,9 @@ public class RobotContainer {
   }
 
   private void configureButtonBindings() {
+    movementJoystick.a().onTrue(toggleIntake);
+    //movementJoystick.a().onTrue(setActive);
+    
   }
   // Auto Stuff
   /**

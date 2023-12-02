@@ -14,11 +14,12 @@ public class AutoSelector {
   SendableChooser<Command> m_chooser = new SendableChooser<Command>();
 
   public AutoSelector(DriveBase Drive, ArmSubsystem arm){
+
     SmartDashboard.putData("autos: ", m_chooser);
     m_chooser.setDefaultOption("Dump go out", new Auto_DumpandGo(arm, Drive));
   }
 
-  public Command getSelected(){
+  public Command getSelected() {
     return m_chooser.getSelected();
   }
 

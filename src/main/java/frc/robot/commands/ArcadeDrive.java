@@ -27,9 +27,9 @@ public class ArcadeDrive extends RunCommand {
         SmartDashboard.putString("On", "true");
 
         drive.drive(
-          MathUtil.applyDeadband(xSpeed.getAsDouble(), 0.1)*Constants.drive.driveSpeedRatio,
-          MathUtil.applyDeadband(ySpeed.getAsDouble(), 0.1)*Constants.drive.driveSpeedRatio,
-          MathUtil.applyDeadband(rotation.getAsDouble(), 0.1)*Constants.drive.rotationSpeedRatio
+          MathUtil.applyDeadband(xSpeed.getAsDouble(), 0.2)*Constants.drive.driveSpeedRatio,
+          MathUtil.applyDeadband(ySpeed.getAsDouble(), 0.2)*Constants.drive.driveSpeedRatio,
+          MathUtil.applyDeadband(rotation.getAsDouble(), 0.2)*Constants.drive.rotationSpeedRatio
           
         );
       },
