@@ -58,7 +58,7 @@ public class ArmSubsystem extends SubsystemBase {
     SmartDashboard.putBoolean("isActive", isActive);
   }
   
-  private void moveManuel(double speed){
+  public void moveManuel(double speed){
     armMotors.set(speed);
   }
 
