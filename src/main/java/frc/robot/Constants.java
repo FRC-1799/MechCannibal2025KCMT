@@ -44,7 +44,7 @@ public final class Constants {
         public static final int ArmTwoPort = 1;
 
         public static final double ArmUp = 0.34;
-        public static final double ArmDown = -0.1;
+        public static final double ArmDown = -0.2;
 
         public static final int topSwitch = 1;
         public static final int bottomSwitch = 0;
@@ -55,8 +55,8 @@ public final class Constants {
 
 
     public static final class auto{
-        public static final double fwdSpeed = -0.6;
-        public static final double revSpeed = 0.4;
+        public static final double fwdSpeed = 0.6;
+        public static final double revSpeed = -0.4;
 
     }
 
