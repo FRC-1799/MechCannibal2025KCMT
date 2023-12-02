@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.commands.auto.AutoFunctions.DriveStraight;
 import frc.robot.Constants;
-import frc.robot.commands.ArmMove;
+import frc.robot.commands.ToggleArm;
 import frc.robot.subsystems.ArmSubsystem;
 
 public class Auto_DumpandGo extends SequentialCommandGroup {
@@ -25,7 +25,7 @@ public class Auto_DumpandGo extends SequentialCommandGroup {
     super(
       new WaitCommand(1),
       //dump game piece
-    new ArmMove(arm, null),
+    new ToggleArm(arm),
         /*place holder for now 
          *Owen will fix ArmMove once he does make sure to come back
          *fix line 28 so its not bolded

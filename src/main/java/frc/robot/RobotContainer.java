@@ -62,6 +62,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     movementJoystick.a().onTrue(toggleIntake);
     //movementJoystick.a().onTrue(setActive);
+    movementJoystick.povDown().whileTrue(toggleIntake);
     
   }
   // Auto Stuff
