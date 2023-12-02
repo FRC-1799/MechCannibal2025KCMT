@@ -14,44 +14,45 @@ public class ArmSubsystem extends SubsystemBase {
   public final WPI_VictorSPX armTwo = new WPI_VictorSPX(Constants.arm.ArmTwoPort);
   public final DigitalInput topSwitch = new DigitalInput(Constants.arm.topSwitch);
   public final DigitalInput bottomSwitch = new DigitalInput(Constants.arm.bottomSwitch);
-  public boolean isUp = false;
+  public boolean isGoingUp = false;
   public boolean isActive = false;
   final MotorControllerGroup armMotors = new MotorControllerGroup(armOne, armTwo);
 
 
   public void move() {
     printInfo();
-      if(isActive)
-
-        if (!topSwitch.get()) {
-            isUp = true;
+      if(isActive){
+        if (!isGoingUp){
+          if (!topSwitch.get()) {
+            isGoingUp = true;
+            armMotors.set(Constants.arm.ArmDown);
             
             // We are going up and top limit is tripped so stop
-            armMotors.set(0);
-        } 
-        if(!isUp) {
-          // We are going up but top limit is not tripped so go at commanded speed
-          
-          armMotors.set(Constants.arm.ArmUp);
+          }
+          else{
+            armMotors.set(Constants.arm.ArmUp);
+          }
         }
-
-        if (!bottomSwitch.get() && isUp) {
-          // We are going down and bottom limit is tripped so stop
-         
-          armMotors.set(0);
-          isUp = false;
-          isActive = false;
-          return;
+        else{
+          if (!bottomSwitch.get() && isGoingUp) {
+            // We are going down and bottom limit is tripped so stop
+          
+            armMotors.set(0);
+            isGoingUp = false;
+            isActive = false;
+            
+        }
+          else{
+            armMotors.set(Constants.arm.ArmDown);
+        }
       }
-      else if(isUp){
-        armMotors.set(Constants.arm.ArmDown);
     }
   }
   // public void setActive() {
   //   isActive = true;
   // }
   private void printInfo(){
-    SmartDashboard.putBoolean("isup", isUp);
+    SmartDashboard.putBoolean("isup", isGoingUp);
     SmartDashboard.putBoolean("topSwitch", topSwitch.get());
     SmartDashboard.putBoolean("botttomSwitch", bottomSwitch.get());
     SmartDashboard.putBoolean("isActive", isActive);
