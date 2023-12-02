@@ -21,7 +21,7 @@ public class Auto_DumpandGo extends SequentialCommandGroup {
 
   // Subsystem to Dump Cargo then go forward over charge station
   // and then back up onto charge system to attempt balance
-  public Auto_DumpandGo(ArmSubsystem arm, DriveBase drive, DriveStraight execute) {
+  public Auto_DumpandGo(ArmSubsystem arm, DriveBase drive) {
     super(
       new WaitCommand(1),
       //dump game piece

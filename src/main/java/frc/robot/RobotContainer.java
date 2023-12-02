@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import frc.robot.Constants.arm;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.commands.auto.AutoSelector;
@@ -25,7 +26,7 @@ public class RobotContainer {
   final ArmSubsystem arm = new ArmSubsystem(); 
 
 
-  final AutoSelector selector = new AutoSelector(m_driveSubsystem);
+  final AutoSelector selector = new AutoSelector(m_driveSubsystem, arm);
 
   final CommandXboxController movementJoystick = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
   final CommandXboxController manipulatorJoystick = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);
