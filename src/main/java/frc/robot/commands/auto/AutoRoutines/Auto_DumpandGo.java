@@ -9,7 +9,7 @@ import frc.robot.subsystems.DriveBase;
 import frc.robot.commands.auto.AutoFunctions.DriveStraight;
 import frc.robot.Constants;
 import frc.robot.commands.ToggleArm;
-import frc.robot.commands.ToggleArm;
+
 import frc.robot.subsystems.ArmSubsystem;
 
 public class Auto_DumpandGo extends SequentialCommandGroup {

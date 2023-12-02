@@ -8,6 +8,8 @@ import frc.robot.Constants.arm;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.commands.auto.AutoSelector;
+
+
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -30,6 +32,9 @@ public class RobotContainer {
 
   final CommandXboxController movementJoystick = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
   final CommandXboxController manipulatorJoystick = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);
+
+  final manuelArm manuelArmUp = new manuelArm(arm, Constants.arm.ArmUp);
+  final manuelArm manuelArmDown = new manuelArm(arm, Constants.arm.ArmDown);
 
   final ToggleArm toggleIntake = new ToggleArm(arm);
   //final setActive setActive = new setActive(arm);
@@ -60,8 +65,10 @@ public class RobotContainer {
   }
 
   private void configureButtonBindings() {
-    movementJoystick.a().onTrue(toggleIntake);
+    manipulatorJoystick.a().onTrue(toggleIntake);
     //movementJoystick.a().onTrue(setActive);
+    manipulatorJoystick.rightBumper().whileTrue(manuelArmDown);
+    manipulatorJoystick.leftBumper().whileTrue(manuelArmUp);
     
   }
   // Auto Stuff

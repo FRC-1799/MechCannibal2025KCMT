@@ -57,6 +57,10 @@ public class ArmSubsystem extends SubsystemBase {
     SmartDashboard.putBoolean("botttomSwitch", bottomSwitch.get());
     SmartDashboard.putBoolean("isActive", isActive);
   }
+  
+  public void moveManuel(double speed){
+    armMotors.set(speed);
+  }
 
 }
   // public void move2(DigitalInput endSwitch, MotorControllerGroup motor){
