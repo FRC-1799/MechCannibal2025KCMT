@@ -14,56 +14,49 @@ public class ArmSubsystem extends SubsystemBase {
   public final WPI_VictorSPX armTwo = new WPI_VictorSPX(Constants.arm.ArmTwoPort);
   public final DigitalInput topSwitch = new DigitalInput(Constants.arm.topSwitch);
   public final DigitalInput bottomSwitch = new DigitalInput(Constants.arm.bottomSwitch);
-  public boolean isUp = false;
+  public boolean isGoingDown = false;
   public boolean isActive = false;
   final MotorControllerGroup armMotors = new MotorControllerGroup(armOne, armTwo);
 
 
   public void move() {
-
-      isActive = true;
-      while (isActive) {
-        SmartDashboard.putBoolean("isup", isUp);
-        SmartDashboard.putBoolean("topSwitch", topSwitch.get());
-        SmartDashboard.putBoolean("botttomSwitch", bottomSwitch.get());
-        SmartDashboard.putBoolean("isActive", isActive);
+    printInfo();
+    if(isActive){
+      if (!isGoingDown){
         if (!topSwitch.get()) {
-            isUp = true;
-            
-            // We are going up and top limit is tripped so stop
-            armMotors.set(0);
-        } 
-        if(!isUp) {
-          // We are going up but top limit is not tripped so go at commanded speed
+          isGoingDown = true;
+          armMotors.set(Constants.arm.ArmDown);
           
+          // We are going up and top limit is tripped so stop
+        }
+        else{
           armMotors.set(Constants.arm.ArmUp);
         }
-
-        if (!bottomSwitch.get() && isUp) {
+      }
+      else{
+        if (!bottomSwitch.get() && isGoingDown) {
           // We are going down and bottom limit is tripped so stop
-          SmartDashboard.putBoolean("isup", isUp);
-          SmartDashboard.putBoolean("topSwitch", topSwitch.get());
-          SmartDashboard.putBoolean("botttomSwitch", bottomSwitch.get());
-          SmartDashboard.putBoolean("isActive", isActive);
-          armMotors.set(0);
-          isUp = false;
-          isActive = false;
-          return;
-      }
-      else if(isUp){
-        armMotors.set(Constants.arm.ArmDown);
-    }
-      }
-    
-
         
-      
-
-
+          armMotors.set(0);
+          isGoingDown = false;
+          isActive = false;
+          
+      }
+        else{
+          armMotors.set(Constants.arm.ArmDown);
+      }
+    }
   }
+}
   // public void setActive() {
   //   isActive = true;
   // }
+  private void printInfo(){
+    SmartDashboard.putBoolean("isup", isGoingDown);
+    SmartDashboard.putBoolean("topSwitch", topSwitch.get());
+    SmartDashboard.putBoolean("botttomSwitch", bottomSwitch.get());
+    SmartDashboard.putBoolean("isActive", isActive);
+  }
 
 }
   // public void move2(DigitalInput endSwitch, MotorControllerGroup motor){
