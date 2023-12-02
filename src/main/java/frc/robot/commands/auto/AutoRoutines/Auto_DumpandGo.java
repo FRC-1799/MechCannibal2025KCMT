@@ -9,6 +9,7 @@ import frc.robot.subsystems.DriveBase;
 import frc.robot.commands.auto.AutoFunctions.DriveStraight;
 import frc.robot.Constants;
 import frc.robot.commands.ToggleArm;
+
 import frc.robot.subsystems.ArmSubsystem;
 
 public class Auto_DumpandGo extends SequentialCommandGroup {
@@ -31,9 +32,9 @@ public class Auto_DumpandGo extends SequentialCommandGroup {
          *fix line 28 so its not bolded
          */
       
-      new WaitCommand(5),
+      //new WaitCommand(5),
 
-      new DriveStraight(drive, 3.0, Constants.auto.fwdSpeed, false)
+      new DriveStraight(drive, 3.0, Constants.auto.revSpeed, true)
       
       
     );
