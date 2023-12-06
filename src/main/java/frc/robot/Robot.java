@@ -7,10 +7,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.commands.ToggleArm;
+import frc.robot.commands.manuelArm;
 import frc.robot.commands.auto.AutoRoutines.Auto_DumpandGo;
 import frc.robot.subsystems.*;
 
@@ -24,9 +28,18 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private RobotContainer m_robotContainer;
   public ArmSubsystem arm = new ArmSubsystem();
   public DriveBase Drive = new DriveBase();
+
+  final CommandXboxController movementJoystick = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
+  final CommandXboxController manipulatorJoystick = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);
+
+  
+  //Commands
+  final manuelArm manuelArmUp = new manuelArm(arm, Constants.arm.ArmUp);
+  final manuelArm manuelArmDown = new manuelArm(arm, Constants.arm.ArmDown);
+
+  final ToggleArm toggleIntake = new ToggleArm(arm);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -36,8 +49,10 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
-    
+    configureButtonBindings();
+
+    //start cameraServer
+    CameraServer.startAutomaticCapture();
   }
 
   /**
@@ -53,7 +68,6 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
-    CommandScheduler.getInstance().run();
   }
 
   /**
@@ -73,6 +87,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     Auto_DumpandGo autoDumpAndGoCommandGroup = new Auto_DumpandGo(arm, Drive);
+    autoDumpAndGoCommandGroup.execute();
   }
 
   /**
@@ -98,6 +113,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    Drive.drive(movementJoystick.getLeftX(), -movementJoystick.getLeftY(), -movementJoystick.getRightX());
   }
 
   @Override
@@ -111,5 +127,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+  }
+
+  private void configureButtonBindings() {
+    manipulatorJoystick.a().onTrue(toggleIntake);
+    //movementJoystick.a().onTrue(setActive);
+    manipulatorJoystick.rightBumper().whileTrue(manuelArmDown);
+    manipulatorJoystick.leftBumper().whileTrue(manuelArmUp);
+    
   }
 }
