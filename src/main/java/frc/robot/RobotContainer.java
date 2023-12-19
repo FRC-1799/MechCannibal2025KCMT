@@ -33,8 +33,8 @@ public class RobotContainer {
   final CommandXboxController movementJoystick = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
   final CommandXboxController manipulatorJoystick = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);
 
-  final manuelArm manuelArmUp = new manuelArm(arm, Constants.arm.ArmUp);
-  final manuelArm manuelArmDown = new manuelArm(arm, Constants.arm.ArmDown);
+  final moveArm manuelArmUp = new moveArm(arm, Constants.arm.ArmUp);
+  final moveArm manuelArmDown = new moveArm(arm, Constants.arm.ArmDown);
 
   final ToggleArm toggleIntake = new ToggleArm(arm);
   //final setActive setActive = new setActive(arm);

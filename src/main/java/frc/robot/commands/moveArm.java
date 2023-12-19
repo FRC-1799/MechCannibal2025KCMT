@@ -6,14 +6,14 @@ import frc.robot.subsystems.ArmSubsystem;
 //import frc.robot.Constants;
 import frc.robot.subsystems.ArmSubsystem;
 
-public class manuelArm extends RunCommand {
+public class moveArm extends RunCommand {
 
   private final ArmSubsystem arm;
 
-  public manuelArm(ArmSubsystem arm, double speed) {
+  public moveArm(ArmSubsystem arm, double speed) {
     super(
       ()->{
-        arm.moveManuel(speed);
+        arm.move(speed);
       },
      arm
      );
@@ -24,6 +24,6 @@ public class manuelArm extends RunCommand {
   @Override
   public void end(boolean interrupted) {
     super.end(interrupted);
-    arm.moveManuel(0);
+    arm.move(0);
   }
 }
