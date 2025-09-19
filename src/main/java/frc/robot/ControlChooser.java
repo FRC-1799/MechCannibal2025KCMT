@@ -10,8 +10,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants.wristConstants;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.subsystems.BetterTrigger;
 
@@ -94,7 +96,9 @@ public class ControlChooser {
     /**@return a new test control loop*/
     private EventLoop getTestControl(){
         EventLoop toReturn = new EventLoop();
-        setDefaultCommand(new ArcadeDrive(SystemManager.drivebase, xbox1::getRightX, xbox1::getRightY, ()->{return xbox1.getLeftTriggerAxis()-0;}), SystemManager.drivebase, toReturn);
+        setDefaultCommand(new ArcadeDrive(SystemManager.drivebase, xbox1::getRightX, xbox1::getRightY, ()->{return xbox1.getLeftTriggerAxis()-xbox1.getRightTriggerAxis();}), SystemManager.drivebase, toReturn);
+        xbox1.rightBumper().onTrue(new InstantCommand(()->SystemManager.wrist.setGoal(wristConstants.intakePosit)));
+        xbox1.leftBumper().onTrue(new InstantCommand(()->SystemManager.wrist.setGoal(wristConstants.l1EncoderVal)));
         return toReturn;
     }
 

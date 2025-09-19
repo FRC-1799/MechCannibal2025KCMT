@@ -4,6 +4,14 @@
 
 package frc.robot;
 
+import static edu.wpi.first.units.Units.Degrees;
+
+import com.pathplanner.lib.config.PIDConstants;
+
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.wpilibj.DigitalSource;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean
@@ -53,7 +61,27 @@ public final class Constants {
 
     // Changing Solenoid Values idk 50/50 this'll work
 
+    public static class wristConstants{
 
+        public static final Angle l1EncoderVal = Degrees.of(0);
+        public static final Angle restingPosit = Degrees.of(0);
+        public static final Angle intakePosit = Degrees.of(0);
+
+
+        public static final Angle minAngle = Degrees.of(360);
+        public static final Angle maxAngle = Degrees.of(0);
+        
+        public static final double tolerance = 3;
+        public static final double speedForSim=5;
+        public static final double encoderOffset=0;//5.4;
+        public static final int motorID=8;
+        public static final PIDConstants wristPID = new PIDConstants(0.0015, 0, 0.);
+        public static final double g = 0;
+        public static final int encoderChannelB = 0;
+        public static final int encoderChannelA = 1;
+
+    
+    }
     public static final class auto{
         public static final double fwdSpeed = 0.6;
         public static final double revSpeed = -0.4;
