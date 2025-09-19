@@ -34,8 +34,6 @@ public class DriveBase extends SubsystemBase {
 
     //leftMotors.setInverted(true);
     //m_RobotDrive = new DifferentialDrive(rightMotors, leftMotors)
-    LeftFront.setInverted(true);
-    LeftBack.setInverted(true);
     
     m_RobotDrive = new MecanumDrive(LeftFront, LeftBack, RightFront, RightBack);
 

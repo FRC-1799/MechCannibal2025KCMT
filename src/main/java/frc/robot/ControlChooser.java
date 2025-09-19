@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.ArcadeDrive;
 import frc.robot.subsystems.BetterTrigger;
 
 public class ControlChooser {
@@ -93,7 +94,7 @@ public class ControlChooser {
     /**@return a new test control loop*/
     private EventLoop getTestControl(){
         EventLoop toReturn = new EventLoop();
-
+        setDefaultCommand(new ArcadeDrive(SystemManager.drivebase, xbox1::getRightX, xbox1::getRightY, ()->{return xbox1.getLeftTriggerAxis()-0;}), SystemManager.drivebase, toReturn);
         return toReturn;
     }
 

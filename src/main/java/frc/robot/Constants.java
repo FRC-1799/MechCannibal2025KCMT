@@ -25,11 +25,11 @@ public final class Constants {
         // B: back
 
         // left
-        public static final int LF = 2;
+        public static final int LF = 3;
         public static final int LB = 4;
 
         // right
-        public static final int RF = 3;
+        public static final int RF = 2;
         public static final int RB = 5;
         
         public static double rotationSpeedRatio= 0.6;
@@ -64,7 +64,7 @@ public final class Constants {
     public static final int MANIPULATOR_JOYSTICK = 1;
 
 
-    
+
     public static class OperatorConstants{
         // Joystick Deadband
         public static final double LEFT_X_DEADBAND  = 0.1;
