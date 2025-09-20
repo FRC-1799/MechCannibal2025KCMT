@@ -15,12 +15,12 @@ import frc.robot.subsystems.Wrist;
 
 
 public class SystemManager{
-    public static DriveBase drivebase=null;
+    public static DriveBase drive=null;
     public static Wrist wrist = new Wrist();
     public static Intake intake = new Intake();
     /** Initializes the system manager along with all the systems on the robot */
     public static void SystemManagerInit(Robot robotIn){
-        drivebase= new DriveBase();
+        drive= new DriveBase();
         
     }
 

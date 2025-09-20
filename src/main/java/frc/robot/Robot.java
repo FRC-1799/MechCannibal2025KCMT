@@ -23,6 +23,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.ArcadeDrive;
+
+import static edu.wpi.first.units.Units.Seconds;
+
 import java.io.File;
 import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
@@ -39,9 +44,7 @@ public class Robot extends TimedRobot{
     ControlChooser controlChooser;
     int heartBeat=0;
     private Timer disabledTimer;
-    StructPublisher<Pose2d> posePublisher = NetworkTableInstance.getDefault().getStructTopic("robotPose", Pose2d.struct).publish(PubSubOption.periodic(0.02));
     SendableChooser<Command> autoChooser=new SendableChooser<>();
-    SendableChooser<Pose2d> poseChooser=new SendableChooser<>();
 
 
     
@@ -51,6 +54,16 @@ public class Robot extends TimedRobot{
       instance = this;
       SystemManager.SystemManagerInit(instance);
 
+
+      autoChooser.setDefaultOption("You spin me right round like a record baby right round right round", new ArcadeDrive(SystemManager.drive, ()->0, ()->0, ()->1, ()->false).withTimeout(Seconds.of(15)));
+      autoChooser.addOption("Its Mobilitin Time", new ArcadeDrive(SystemManager.drive, ()->0.2, ()->0, ()->0, ()->false).withTimeout(1));
+      autoChooser.addOption("THE ONE PIECE IS REAL", 
+        new ArcadeDrive(SystemManager.drive, ()->0.5, ()->0, ()->1, ()->false).withTimeout(1)
+        .andThen(new InstantCommand(()->SystemManager.wrist.setGoal(Constants.wristConstants.l1EncoderVal)))
+        .andThen(new WaitCommand(3))
+        .andThen(new InstantCommand(()->SystemManager.intake.startOuttake())));
+
+        SmartDashboard.putData(autoChooser);
 
         if (!RobotBase.isReal()){
             //for schemes too unsafe to run on the real bot

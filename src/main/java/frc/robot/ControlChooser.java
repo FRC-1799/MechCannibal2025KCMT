@@ -96,7 +96,7 @@ public class ControlChooser {
     /**@return a new test control loop*/
     private EventLoop getTestControl(){
         EventLoop toReturn = new EventLoop();
-        setDefaultCommand(new ArcadeDrive(SystemManager.drivebase, xbox1::getRightX, xbox1::getRightY, ()->{return xbox1.getLeftTriggerAxis()-xbox1.getRightTriggerAxis();}), SystemManager.drivebase, toReturn);
+        setDefaultCommand(new ArcadeDrive(SystemManager.drive, xbox1::getRightX, xbox1::getRightY, ()->{return xbox1.getLeftTriggerAxis()-xbox1.getRightTriggerAxis();}), SystemManager.drive, toReturn);
         xbox1.rightBumper().onTrue(new InstantCommand(()->SystemManager.wrist.setGoal(wristConstants.intakePosit)));
         xbox1.rightBumper().onTrue(new InstantCommand(()->SystemManager.intake.startIntake()));
         xbox1.leftBumper().onTrue(new InstantCommand(()->SystemManager.wrist.setGoal(wristConstants.l1EncoderVal)));

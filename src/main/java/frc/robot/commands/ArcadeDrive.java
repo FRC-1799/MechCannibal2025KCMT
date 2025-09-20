@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.math.MathUtil;
@@ -22,16 +23,30 @@ public class ArcadeDrive extends RunCommand {
 
 
   public ArcadeDrive(DriveBase drive, DoubleSupplier xSpeed, DoubleSupplier ySpeed, DoubleSupplier rotation) {
+    this(drive, xSpeed, ySpeed, rotation, ()->true);
+  }
+
+  public ArcadeDrive(DriveBase drive, DoubleSupplier xSpeed, DoubleSupplier ySpeed, DoubleSupplier rotation, BooleanSupplier isFieldOriented) {
     super(
       ()->{
         SmartDashboard.putString("On", "true");
 
-        drive.drive(
-          MathUtil.applyDeadband(xSpeed.getAsDouble(), 0.2)*Constants.drive.driveSpeedRatio,
-          MathUtil.applyDeadband(ySpeed.getAsDouble(), 0.2)*Constants.drive.driveSpeedRatio,
-          MathUtil.applyDeadband(rotation.getAsDouble(), 0.2)*Constants.drive.rotationSpeedRatio
-          
-        );
+        if (isFieldOriented.getAsBoolean()){  
+          drive.driveField(
+            MathUtil.applyDeadband(xSpeed.getAsDouble(), 0.2)*Constants.drive.driveSpeedRatio,
+            MathUtil.applyDeadband(ySpeed.getAsDouble(), 0.2)*Constants.drive.driveSpeedRatio,
+            MathUtil.applyDeadband(rotation.getAsDouble(), 0.2)*Constants.drive.rotationSpeedRatio
+            
+          );
+        }
+        else{
+          drive.drive(
+            MathUtil.applyDeadband(xSpeed.getAsDouble(), 0.2)*Constants.drive.driveSpeedRatio,
+            MathUtil.applyDeadband(ySpeed.getAsDouble(), 0.2)*Constants.drive.driveSpeedRatio,
+            MathUtil.applyDeadband(rotation.getAsDouble(), 0.2)*Constants.drive.rotationSpeedRatio
+            
+          );
+        }
       },
       drive
     );
