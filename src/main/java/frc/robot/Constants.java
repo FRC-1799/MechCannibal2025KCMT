@@ -88,6 +88,13 @@ public final class Constants {
 
     }
 
+    public static final class IntakeConstants{
+        public static final int motorID = 0;
+        public static final int limitSwitchID=0;
+        public static final double intakeSpeed=1;
+        public static final double outtakeSpeed=-1;
+    }
+
     public static final int MOVEMENT_JOYSTICK = 0;
     public static final int MANIPULATOR_JOYSTICK = 1;
 

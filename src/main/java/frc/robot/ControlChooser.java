@@ -98,7 +98,10 @@ public class ControlChooser {
         EventLoop toReturn = new EventLoop();
         setDefaultCommand(new ArcadeDrive(SystemManager.drivebase, xbox1::getRightX, xbox1::getRightY, ()->{return xbox1.getLeftTriggerAxis()-xbox1.getRightTriggerAxis();}), SystemManager.drivebase, toReturn);
         xbox1.rightBumper().onTrue(new InstantCommand(()->SystemManager.wrist.setGoal(wristConstants.intakePosit)));
+        xbox1.rightBumper().onTrue(new InstantCommand(()->SystemManager.intake.startIntake()));
         xbox1.leftBumper().onTrue(new InstantCommand(()->SystemManager.wrist.setGoal(wristConstants.l1EncoderVal)));
+        xbox1.a().onTrue(new InstantCommand(()->SystemManager.intake.startOuttake()));
+        xbox1.b().onTrue(new InstantCommand(()->SystemManager.intake.rest()));
         return toReturn;
     }
 

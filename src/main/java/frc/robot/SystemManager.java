@@ -10,12 +10,14 @@ import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveBase;
-import frc.robot.subsystems.wrist;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Wrist;
 
 
 public class SystemManager{
     public static DriveBase drivebase=null;
-    public static wrist wrist = new wrist();
+    public static Wrist wrist = new Wrist();
+    public static Intake intake = new Intake();
     /** Initializes the system manager along with all the systems on the robot */
     public static void SystemManagerInit(Robot robotIn){
         drivebase= new DriveBase();

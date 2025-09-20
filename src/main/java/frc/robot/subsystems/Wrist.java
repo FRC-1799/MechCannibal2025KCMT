@@ -15,7 +15,7 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 
-public class wrist extends SubsystemBase{
+public class Wrist extends SubsystemBase{
 
 
     
@@ -28,7 +28,7 @@ public class wrist extends SubsystemBase{
     protected PIDController wristPID = new PIDController(wristConstants.wristPID.kP, wristConstants.wristPID.kI, wristConstants.wristPID.kD);
     
 
-    public wrist(){
+    public Wrist(){
         wristPID.setTolerance(wristConstants.tolerance);
         
         
